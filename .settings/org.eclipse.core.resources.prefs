@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//common/ConfigHelper.py=utf-8
+encoding//common/DbHelper.py=utf-8
+encoding//common/EmailHelper.py=utf-8
+encoding//common/LogHelper.py=utf-8
+encoding//crawler/Hbsl.py=utf-8
+encoding//crawler/test.py=utf-8

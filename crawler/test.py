@@ -13,6 +13,8 @@ import common.DbHelper
 from common.ConfigHelper import ConfigHelper
 from common.LogHelper import LogHelper
 from common.EmailHelper import SendEmail
+from __builtin__ import str
+from _ast import Str
 '''
 要在调用setdefaultencoding时必须要先reload一次sys模块，因为这里的import语句其实并不是sys的第一次导入语句，也就是说这里其实可能是第二、三次进行sys模块的import，这里只是一个对sys的引用，只能reload才能进行重新加载。
 
@@ -23,36 +25,7 @@ from common.EmailHelper import SendEmail
 reload(sys)
 sys.setdefaultencoding('utf-8')
 # '%s.txt' % datetime.date.today()
-
-html = urllib.urlopen('http://www5.ncwu.edu.cn/contents/13/39646.html')
-soup = bs4.BeautifulSoup(html, 'html.parser')
-content = soup.find('div', attrs={'class': 'xinxi_con'})
-i = 0
-log = LogHelper()
-print('是的范德萨')
-
-
-# class Log():
-#
-#     log = logging.getLogger('ll')
-#     log.setLevel(level=logging.INFO)
-#
-#     @staticmethod
-#     def Log(msg):
-#
-#         logPath = os.path.join(os.path.split(sys.path[0])[0], 'log')
-#
-#         if not os.path.exists(logPath):
-#             os.makedirs(logPath)
-#
-#         logPath = os.path.join(logPath, '%s.txt' % datetime.date.today())
-#
-#         handler = RotatingFileHandler(
-#             logPath, maxBytes=5 * 1024 * 1024, backupCount=10)
-#         handler.setLevel(level=logging.INFO)
-#         formatter = logging.Formatter(
-#             '[%(asctime)s] => %(message)s ')
-#
-#         handler.setFormatter(formatter)
-#         log.addHandler(handler)
-#         log.info(msg)
+# 三个参数：分别返回1.父目录 2.所有文件夹名字（不含路径） 3.所有文件名字
+SendEmail.Send(os.path.join(sys.path[0], 'config.ini'), '每天的日志文件', os.path.join(os.path.split(
+    sys.path[0])[0], 'log', str((datetime.timedelta(days=-1) +
+                                 datetime.datetime.now()).date())))

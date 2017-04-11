@@ -97,7 +97,7 @@ def crawlerJob():
                     ), 'date': date.strip(), 'NeiRong': content.prettify(), 'LeiXing': 0, 'UserID': 1}])
             except Exception:
                 log.Log(
-                    traceback.format_exc() + '数据库操作异常：' % href)
+                    traceback.format_exc() + '数据库操作异常：%s' % href)
                 # 应该是重试
         log.Log('page=%s' % page)
         page += 1
@@ -159,7 +159,7 @@ def crawlerNoticeJob():
                     ), 'date': date.strip(), 'NeiRong': content.prettify(), 'LeiXing': 1, 'UserID': 1}])
             except Exception:
                 log.Log(
-                    traceback.format_exc() + ' 数据库操作异常：' % href)
+                    traceback.format_exc() + ' 数据库操作异常：%s' % href)
                 # 应该是重试
         log.Log('page=%s' % page)
         page += 1

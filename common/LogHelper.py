@@ -20,7 +20,6 @@ class LogHelper():
 
         if not os.path.exists(logPath):
             os.makedirs(logPath)
-
         logPath = os.path.join(
             logPath, '%s.txt' % (str(datetime.date.today()) + name))
 
@@ -31,6 +30,8 @@ class LogHelper():
             '[%(asctime)s] =>  %(message)s ')
 
         handler.setFormatter(formatter)
+        # 日志重复打印问题  是因为每次都会添加一个handler，因此每次都会执行一下
+        self.logger.handlers = []
         self.logger.addHandler(handler)
 
     def Log(self, msg):
